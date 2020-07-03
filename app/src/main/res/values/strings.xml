@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ProductDiscovery</string>
+    <string name="title_fake_name_product">Màn hình LCD HKC 31.5 M32A7Q</string>
+    <string name="message_throw_exception_viewmodel_factory">unknown model class</string>
+    <string name="message_text_price">Không biết giá</string>
+    <string name="message_text_search">Nhập tên mã, sản phẩm</string>
+</resources>

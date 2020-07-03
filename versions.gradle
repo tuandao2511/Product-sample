@@ -1,0 +1,119 @@
+def versions = [:]
+//support & layout
+versions.support = "1.0.0"
+versions.junit = "4.12"
+versions.constraint_layout = "1.1.3"
+versions.annotations = "1.0.0"
+versions.material_desgin = "1.0.0"
+versions.search_view = "2.1.1"
+versions.preference = "preference:1.1.0-alpha05"
+
+//binding
+versions.binding_utils
+
+//glide
+versions.glide = "4.8.0"
+
+//lifecycle
+versions.lifecycle = "2.2.0"
+
+//dagger
+versions.dagger = "2.22"
+
+//retrofit
+versions.retrofit = "2.3.0"
+versions.retrofitLogger = "3.4.1"
+versions.okhttp_logging_interceptor = "3.9.0"
+
+//rx
+versions.rxjava2 = "2.2.19"
+versions.rx_android = "2.1.0"
+versions.rx_kotlin = "2.1.0"
+
+//room
+versions.room = "2.0.0"
+
+//test
+versions.espresso = "3.1.0"
+versions.test_runner = "1.1.0"
+
+ext.versions = versions
+
+def build_versions = [:]
+build_versions.min_sdk = 15
+build_versions.target_sdk = 28
+build_versions.build_tools = "27.0.0"
+build_versions.versionCode = 1
+build_versions.versionName = '1.0'
+build_versions.kotlin_version = "1.3.0"
+build_versions.gradle_version = '3.3.0'
+ext.build_versions = build_versions
+
+def support_lib = [:]
+support_lib.appcompat_v7 = "androidx.appcompat:appcompat:$versions.support"
+support_lib.support_v4 = "androidx.legacy:legacy-support-v4:$versions.support"
+support_lib.design = "com.google.android.material:material:$versions.support"
+support_lib.card_view = "androidx.cardview:cardview:$versions.support"
+support_lib.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+support_lib.glide = "com.github.bumptech.glide:glide:$versions.glide"
+support_lib.annotations = "androidx.annotation:annotation:$versions.annotations"
+support_lib.material_desgin = "com.google.android.material:material:$versions.material_desgin"
+support_lib.search_view = "com.github.arimorty:floatingsearchview:$versions.search_view"
+support_lib.preference = "androidx.preference:$versions.preference"
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$build_versions.kotlin_version"
+kotlin.kotlin_gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$build_versions.kotlin_version"
+kotlin.kotlin_allopen = "org.jetbrains.kotlin:kotlin-allopen:$build_versions.kotlin_version"
+
+def rx = [:]
+rx.rx_andrdroid = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+rx.rx_kotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rx_kotlin"
+
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.converter_gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.retrofitLogger"
+retrofit.adapter_rx_java2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+
+def lifecycle = [:]
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.reactivestreams = "androidx.lifecycle:lifecycle-reactivestreams:$versions.lifecycle"
+
+def dagger = [:]
+dagger.dagger = "com.google.dagger:dagger:$versions.dagger"
+dagger.dagger_android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.dagger_android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.dagger_android_processor = "com.google.dagger:dagger-android-processor:$versions.dagger"
+dagger.dagger_compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compile = "androidx.room:room-compiler:$versions.room"
+room.room_rx = "androidx.room:room-rxjava2:$versions.room"
+
+def test = [:]
+test.runner = "androidx.test:runner:$versions.test_runner"
+test.espersso = "androidx.test.espresso:espresso-core:$versions.espresso"
+
+def dep = [:]
+dep.gradle = "com.android.tools.build:gradle:$build_versions.gradle_version"
+dep.junit = "junit:junit:$versions.junit"
+dep.support_lib = support_lib
+dep.kotlin = kotlin
+dep.rx = rx
+dep.retrofit = retrofit
+dep.lifecycle = lifecycle
+dep.dagger = dagger
+dep.room = room
+dep.test = test
+
+static def addRepos(RepositoryHandler handler) {
+    handler.jcenter()
+    handler.google()
+    handler.maven { url 'https://jitpack.io' }
+}
+
+ext.dep = dep
+ext.addRepos = this.&addRepos
