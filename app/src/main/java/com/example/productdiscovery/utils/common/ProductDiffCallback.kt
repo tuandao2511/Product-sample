@@ -31,12 +31,17 @@ class ProductDiffCallback (private val oldList: List<Product>, private val newLi
         val newDisplayName = oldList[oldItemPosition].displayName
         val newSupplierSalePrice = oldList[oldItemPosition].price?.supplierSalePrice
 
-        if (oldDisplayName != newDisplayName) {
+        if (newDisplayName !=null && oldDisplayName != newDisplayName) {
             diff.putString("displayName", newDisplayName)
         }
 
-        if (oldSupplierSalePrice != newSupplierSalePrice) {
+        if (newSupplierSalePrice!=null && oldSupplierSalePrice != newSupplierSalePrice) {
             diff.putDouble("supplierSalePrice", newSupplierSalePrice)
         }
+
+        if (diff.size() == 0 ) {
+            return null
+        }
+        return diff
     }
 }

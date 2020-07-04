@@ -3,12 +3,14 @@ package com.example.productdiscovery.screen.adapter
 import android.content.Context
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.productdiscovery.R
 import com.example.productdiscovery.data.model.Product
 import com.example.productdiscovery.databinding.ItemProductSearchBinding
 import com.example.productdiscovery.screen.base.recyclerview.BaseRecyclerViewAdapter
 import com.example.productdiscovery.screen.search.SearchViewModel
+import com.example.productdiscovery.utils.common.ProductDiffCallback
 import com.example.productdiscovery.utils.common.StringUtils
 
 class SearchAdapter(context: Context, val searchViewModel: SearchViewModel) : BaseRecyclerViewAdapter<Product, RecyclerView.ViewHolder>(context) {
@@ -25,6 +27,16 @@ class SearchAdapter(context: Context, val searchViewModel: SearchViewModel) : Ba
 
     override fun getItemCount(): Int {
         return listData.size
+    }
+
+    fun setDate(newProducts: List<Product>?) {
+        newProducts?.let {
+            val diffCallback = ProductDiffCallback(listData, newProducts)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+            listData.clear()
+            listData.addAll(newProducts)
+            diffResult.dispatchUpdatesTo(this)
+        }
     }
 
     class SearchViewHolder(
