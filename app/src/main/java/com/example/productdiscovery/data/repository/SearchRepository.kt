@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class SearchRepository @Inject constructor(val remote: SearchDataSource.RemoteDataSource)
     : SearchDataSource.RemoteDataSource {
-    override fun searchProducts(query: String): Single<BaseResponse<SearchResponse>> {
-        return remote.searchProducts(query)
+    override fun searchProducts(query: String, page: Int): Single<BaseResponse<SearchResponse>> {
+        return remote.searchProducts(query, page)
     }
 }

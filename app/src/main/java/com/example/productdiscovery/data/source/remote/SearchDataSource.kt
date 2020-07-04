@@ -7,7 +7,7 @@ import io.reactivex.Single
 interface SearchDataSource {
 
     interface RemoteDataSource {
-        fun searchProducts(query: String) : Single<BaseResponse<SearchResponse>>
+        fun searchProducts(query: String, page: Int) : Single<BaseResponse<SearchResponse>>
     }
 
 }

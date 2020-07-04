@@ -9,16 +9,14 @@ import com.example.productdiscovery.data.model.Product
 import com.example.productdiscovery.databinding.ItemProductSearchBinding
 import com.example.productdiscovery.screen.base.recyclerview.BaseRecyclerViewAdapter
 import com.example.productdiscovery.screen.search.SearchViewModel
+import com.example.productdiscovery.utils.common.StringUtils
 
 class SearchAdapter(context: Context, val searchViewModel: SearchViewModel) : BaseRecyclerViewAdapter<Product, RecyclerView.ViewHolder>(context) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = DataBindingUtil.inflate<ItemProductSearchBinding>(
             layoutInflater, R.layout.item_product_search, parent, false
         )
-        return SearchViewHolder(
-            binding,
-            searchViewModel
-        )
+        return SearchViewHolder(binding, searchViewModel)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -31,15 +29,22 @@ class SearchAdapter(context: Context, val searchViewModel: SearchViewModel) : Ba
 
     class SearchViewHolder(
         private val binding: ItemProductSearchBinding,
-        val viewModel: SearchViewModel
+        private val viewModel: SearchViewModel
     ) : RecyclerView.ViewHolder(binding.root) {
-
-        init {
-
-        }
 
         fun bindViewHolder(product: Product) {
 
+            product.price?.let {
+                binding.supplierSalePrice = StringUtils.priceToString(product.price.supplierSalePrice)
+            }
+            product.images?.let {
+                if (it.isEmpty()) {
+                    binding.imageUrl = ""
+                } else {
+                    binding.imageUrl = it[0].url
+                }
+            }
+            binding.product  = product
             binding.viewModel = viewModel
             binding.executePendingBindings()
         }

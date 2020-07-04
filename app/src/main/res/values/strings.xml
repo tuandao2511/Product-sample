@@ -4,4 +4,5 @@
     <string name="message_throw_exception_viewmodel_factory">unknown model class</string>
     <string name="message_text_price">Không biết giá</string>
     <string name="message_text_search">Nhập tên mã, sản phẩm</string>
+    <string name="message_unknown">Không xác định</string>
 </resources>

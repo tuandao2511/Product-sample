@@ -11,7 +11,8 @@ interface Api {
     @GET("api/search/")
     fun searchProducts(
         @Query("channel") channel: String = "pv_showroom"
-        , @Query("q") query: String, @Query("terminal") terminal: String = "CP01")
+        , @Query("q") query: String, @Query("terminal") terminal: String = "CP01",
+        @Query("_page") page: Int)
             : Single<BaseResponse<SearchResponse>>
 
 //    @GET("api/search/")

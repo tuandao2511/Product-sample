@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class SearchRemoteDataSource @Inject constructor(val api: Api) : SearchDataSource.RemoteDataSource {
 
-    override fun searchProducts(query: String): Single<BaseResponse<SearchResponse>> {
-        return api.searchProducts(query = query)
+    override fun searchProducts(query: String, page: Int): Single<BaseResponse<SearchResponse>> {
+        return api.searchProducts(query = query, page = page)
     }
 }

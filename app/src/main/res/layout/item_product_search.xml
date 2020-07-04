@@ -7,6 +7,22 @@
         <variable
             name="viewModel"
             type="com.example.productdiscovery.screen.search.SearchViewModel" />
+
+        <variable
+            name="displayName"
+            type="String" />
+
+        <variable
+            name="supplierSalePrice"
+            type="String" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+        <variable
+            name="product"
+            type="com.example.productdiscovery.data.model.Product" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,6 +43,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:imageUrl="@{imageUrl}"
             tools:src="@color/colorPrimary" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -42,6 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{product.displayName ?? @string/message_unknown}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toTopOf="@+id/imageProduct"
@@ -53,6 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{supplierSalePrice}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/textNameProduct"
